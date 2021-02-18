@@ -28,18 +28,18 @@ window.config(
 )
 
 #   timer label
-timer_label = tkinter.Label(
+title_label = tkinter.Label(
     text="Timer",
     bg=YELLOW,
     fg=GREEN,
     font=(
         FONT_NAME,
-        35,
+        50,
         "bold"
     )
 )
 # timer_label.pack()
-timer_label.grid(row=0, column=1)
+title_label.grid(row=0, column=1)
 
 #   create image
 photo = tkinter.PhotoImage(file="tomato.png")
