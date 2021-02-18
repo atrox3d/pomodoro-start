@@ -1,4 +1,5 @@
 import tkinter
+import math
 
 # ---------------------------- CONSTANTS ------------------------------- #
 #   https://colorhunt.co/
@@ -28,22 +29,19 @@ def start_timer():
     long_break = LONG_BREAK_MIN * 60
 
     if reps % 8 == 0:               # 8
-        title_label.config(text="Long Break", fg=RED)
-        # checkmark_label.config(fg=RED)
+        title_label.config(text="Break", fg=RED)
         count_down(long_break)
     elif reps % 2 == 0:             # 2, 4, 6
-        title_label.config(text="Short Break", fg=PINK)
-        # checkmark_label.config(fg=PINK)
+        title_label.config(text="Break", fg=PINK)
         count_down(short_break)
     else:                           # 1, 3, 7
         title_label.config(text="Work", fg=GREEN)
-        # checkmark_label.config(fg=GREEN)
         count_down(work)
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
-    count_mins = int(count / 60)
+    count_mins = math.floor(count / 60)
     count_seconds = count % 60
     count_text = f"{count_mins:02d}:{count_seconds:02d}"
     # change pomodoro timer text
@@ -61,6 +59,12 @@ def count_down(count):
         )
     else:
         start_timer()
+        if reps % 2 == 0:
+            marks = ""
+            work_sessions = math.floor(reps/2)
+            for _ in range(work_sessions):
+                marks += CHECKMARK
+            checkmark_label.config(text=marks)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -79,7 +83,7 @@ title_label = tkinter.Label(
     fg=GREEN,
     font=(
         FONT_NAME,
-        50,
+        35,
         "bold"
     )
 )
@@ -127,12 +131,12 @@ start_button.grid(row=2, column=0)
 
 #   checkmark label
 checkmark_label = tkinter.Label(
-    text=CHECKMARK,
+    # text=CHECKMARK,
     bg=YELLOW,
     fg=GREEN,
     font=(
         FONT_NAME,
-        35,
+        12,
         "bold"
     )
 )
