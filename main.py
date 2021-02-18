@@ -20,4 +20,13 @@ LONG_BREAK_MIN = 20
 window = tkinter.Tk()
 window.title("Pomodoro")
 
+#   create image
+photo = tkinter.PhotoImage(file="tomato.png")
+
+#   create canvas
+canvas = tkinter.Canvas(width=200, height=224)
+#   add image
+canvas.create_image(100, 112, image=photo)
+canvas.pack()
+
 window.mainloop()
