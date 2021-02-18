@@ -19,9 +19,18 @@ LONG_BREAK_MIN = 20
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def count_down(count):
-    canvas.itemconfig(timer_text, text=count)
+    # change pomodoro timer text
+    canvas.itemconfig(
+        timer_text,     # select canvas element to modify
+        text=count      # set property of element
+    )
     if count > 0:
-        window.after(1000, count_down, count - 1)
+        # register callback function to execute AFTER 1000 ms
+        window.after(
+            1000,           # ms to wait for
+            count_down,     # callback function (this function)
+            count - 1       # callback function parameter
+        )
 
 
 # ---------------------------- UI SETUP ------------------------------- #
