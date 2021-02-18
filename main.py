@@ -20,16 +20,40 @@ LONG_BREAK_MIN = 20
 # ---------------------------- UI SETUP ------------------------------- #
 window = tkinter.Tk()
 window.title("Pomodoro")
-window.config(padx=100, pady=50, bg=YELLOW)
+window.config(
+    padx=100,   # window border
+    pady=50,    # window border
+    bg=YELLOW   # window background color
+)
 
 #   create image
 photo = tkinter.PhotoImage(file="tomato.png")
 
 #   create canvas
-canvas = tkinter.Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
+canvas = tkinter.Canvas(
+    width=200,              # canvas width
+    height=224,             # canvas height
+    bg=YELLOW,              # canvas background color
+    highlightthickness=0    # canvas border size (?)
+)
 #   add image
-canvas.create_image(100, 112, image=photo)
-canvas.create_text(100, 130, text="00:00", fill="white", font=(FONT_NAME, 35, "bold"))
+canvas.create_image(
+    100,            # image center x
+    112,            # image center y
+    image=photo     # photo object
+)
+#   add text
+canvas.create_text(
+    100,                # text center x
+    130,                # text center y
+    text="00:00",       # text
+    fill="white",       # text color fill
+    font=(
+            FONT_NAME,  # font name
+            35,         # font size
+            "bold"      # font weight
+    )
+)
 canvas.pack()
 
 window.mainloop()
