@@ -75,7 +75,16 @@ start_button = tkinter.Button(text="Start")
 start_button.pack()
 
 #   checkmark label
-checkmark_label = tkinter.Label(text=CHECKMARK, bg=YELLOW, fg=GREEN)
+checkmark_label = tkinter.Label(
+    text=CHECKMARK,
+    bg=YELLOW,
+    fg=GREEN,
+    font=(
+        FONT_NAME,
+        35,
+        "bold"
+    )
+)
 checkmark_label.pack()
 
 #   start button
