@@ -36,9 +36,9 @@ def count_down(count):
     if count > 0:
         # register callback function to execute AFTER 1000 ms
         window.after(
-            1000,  # ms to wait for
-            count_down,  # callback function (this function)
-            count - 1  # callback function parameter
+            1000,           # ms to wait for
+            count_down,     # callback function (this function)
+            count - 1       # callback function parameter
         )
 
 
@@ -46,9 +46,9 @@ def count_down(count):
 window = tkinter.Tk()
 window.title("Pomodoro")
 window.config(
-    padx=100,  # window border
-    pady=50,  # window border
-    bg=YELLOW  # window background color
+    padx=100,   # window border
+    pady=50,    # window border
+    bg=YELLOW   # window background color
 )
 
 #   timer label
@@ -70,27 +70,27 @@ photo = tkinter.PhotoImage(file="tomato.png")
 
 #   create canvas
 canvas = tkinter.Canvas(
-    width=200,  # canvas width
-    height=224,  # canvas height
-    bg=YELLOW,  # canvas background color
-    highlightthickness=0  # canvas border size (?)
+    width=200,              # canvas width
+    height=224,             # canvas height
+    bg=YELLOW,              # canvas background color
+    highlightthickness=0    # canvas border size (?)
 )
 #   add image
 canvas.create_image(
-    100,  # image center x
-    112,  # image center y
-    image=photo  # photo object
+    100,            # image center x
+    112,            # image center y
+    image=photo     # photo object
 )
 #   add text
 timer_text = canvas.create_text(
-    100,  # text center x
-    130,  # text center y
-    text="00:00",  # text
-    fill="white",  # text color fill
+    100,            # text center x
+    130,            # text center y
+    text="00:00",   # text
+    fill="white",   # text color fill
     font=(
         FONT_NAME,  # font name
-        35,  # font size
-        "bold"  # font weight
+        35,         # font size
+        "bold"      # font weight
     )
 )
 # canvas.pack()
@@ -98,8 +98,8 @@ canvas.grid(row=1, column=1)
 
 #   start button
 start_button = tkinter.Button(
-    text="Start",  # button text
-    command=start_timer  # function to execute
+    text="Start",           # button text
+    command=start_timer     # function to execute
 )
 # start_button.pack()
 start_button.grid(row=2, column=0)
