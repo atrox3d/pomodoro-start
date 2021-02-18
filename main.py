@@ -5,21 +5,40 @@ import tkinter
 RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
+PINK = "#ffd880"
 #   https://colorhunt.co/
 CHECKMARK = "✔"
 FONT_NAME = "Courier"
 WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
+MILLISECONDS = 1
+reps = 0
 
 
 # ---------------------------- TIMER RESET ------------------------------- #
 
-# ---------------------------- TIMER MECHANISM ------------------------------- # 
+# ---------------------------- TIMER MECHANISM ------------------------------- #
 def start_timer():
-    for _ in range(4):
-        count_down(WORK_MIN * 60)
-        count_down(SHORT_BREAK_MIN * 60)
+    global reps
+    reps += 1   # non-zero based!
+
+    work = WORK_MIN * 60
+    short_break = SHORT_BREAK_MIN * 60
+    long_break = LONG_BREAK_MIN * 60
+
+    if reps % 8 == 0:               # 8
+        title_label.config(text="Long Break", fg=RED)
+        # checkmark_label.config(fg=RED)
+        count_down(long_break)
+    elif reps % 2 == 0:             # 2, 4, 6
+        title_label.config(text="Short Break", fg=PINK)
+        # checkmark_label.config(fg=PINK)
+        count_down(short_break)
+    else:                           # 1, 3, 7
+        title_label.config(text="Work", fg=GREEN)
+        # checkmark_label.config(fg=GREEN)
+        count_down(work)
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
@@ -36,10 +55,12 @@ def count_down(count):
     if count > 0:
         # register callback function to execute AFTER 1000 ms
         window.after(
-            1000,           # ms to wait for
+            MILLISECONDS,           # ms to wait for
             count_down,     # callback function (this function)
-            count - 1       # callback function parameter
+            count - 1,       # callback function parameter
         )
+    else:
+        start_timer()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
