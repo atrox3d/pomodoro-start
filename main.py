@@ -17,15 +17,20 @@ LONG_BREAK_MIN = 20
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_timer():
-    count_down(5)
+    for _ in range(4):
+        count_down(WORK_MIN * 60)
+        count_down(SHORT_BREAK_MIN * 60)
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
+    count_mins = int(count / 60)
+    count_seconds = count % 60
+    count_text = f"{count_mins:02d}:{count_seconds:02d}"
     # change pomodoro timer text
     canvas.itemconfig(
-        timer_text,  # select canvas element to modify
-        text=count  # set property of element
+        timer_text,         # select canvas element to modify
+        text=count_text     # set property of element
     )
     """if count <= 0 the function does not get registerd"""
     if count > 0:
@@ -93,8 +98,8 @@ canvas.grid(row=1, column=1)
 
 #   start button
 start_button = tkinter.Button(
-    text="Start",           # button text
-    command=start_timer     # function to execute
+    text="Start",  # button text
+    command=start_timer  # function to execute
 )
 # start_button.pack()
 start_button.grid(row=2, column=0)
