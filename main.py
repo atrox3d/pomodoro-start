@@ -19,6 +19,7 @@ LONG_BREAK_MIN = 20
 # ---------------------------- UI SETUP ------------------------------- #
 window = tkinter.Tk()
 window.title("Pomodoro")
+window.config(padx=100, pady=50)
 
 #   create image
 photo = tkinter.PhotoImage(file="tomato.png")
@@ -26,7 +27,7 @@ photo = tkinter.PhotoImage(file="tomato.png")
 #   create canvas
 canvas = tkinter.Canvas(width=200, height=224)
 #   add image
-canvas.create_image(100, 112, image=photo)
+canvas.create_image(103, 112, image=photo)
 canvas.pack()
 
 window.mainloop()
