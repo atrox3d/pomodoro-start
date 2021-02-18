@@ -12,19 +12,25 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 
-# ---------------------------- TIMER RESET ------------------------------- # 
+
+# ---------------------------- TIMER RESET ------------------------------- #
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
+def count_down(count):
+    canvas.itemconfig(timer_text, text=count)
+    if count > 0:
+        window.after(1000, count_down, count - 1)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = tkinter.Tk()
 window.title("Pomodoro")
 window.config(
-    padx=100,   # window border
-    pady=50,    # window border
-    bg=YELLOW   # window background color
+    padx=100,  # window border
+    pady=50,  # window border
+    bg=YELLOW  # window background color
 )
 
 #   timer label
@@ -46,31 +52,32 @@ photo = tkinter.PhotoImage(file="tomato.png")
 
 #   create canvas
 canvas = tkinter.Canvas(
-    width=200,              # canvas width
-    height=224,             # canvas height
-    bg=YELLOW,              # canvas background color
-    highlightthickness=0    # canvas border size (?)
+    width=200,  # canvas width
+    height=224,  # canvas height
+    bg=YELLOW,  # canvas background color
+    highlightthickness=0  # canvas border size (?)
 )
 #   add image
 canvas.create_image(
-    100,            # image center x
-    112,            # image center y
-    image=photo     # photo object
+    100,  # image center x
+    112,  # image center y
+    image=photo  # photo object
 )
 #   add text
-canvas.create_text(
-    100,                # text center x
-    130,                # text center y
-    text="00:00",       # text
-    fill="white",       # text color fill
+timer_text = canvas.create_text(
+    100,  # text center x
+    130,  # text center y
+    text="00:00",  # text
+    fill="white",  # text color fill
     font=(
-            FONT_NAME,  # font name
-            35,         # font size
-            "bold"      # font weight
+        FONT_NAME,  # font name
+        35,  # font size
+        "bold"  # font weight
     )
 )
 # canvas.pack()
 canvas.grid(row=1, column=1)
+count_down(5)
 
 #   start button
 start_button = tkinter.Button(text="Start")
