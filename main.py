@@ -27,6 +27,19 @@ window.config(
     bg=YELLOW   # window background color
 )
 
+#   timer label
+timer_label = tkinter.Label(
+    text="Timer",
+    bg=YELLOW,
+    fg=GREEN,
+    font=(
+        FONT_NAME,
+        35,
+        "bold"
+    )
+)
+timer_label.pack()
+
 #   create image
 photo = tkinter.PhotoImage(file="tomato.png")
 
@@ -56,5 +69,17 @@ canvas.create_text(
     )
 )
 canvas.pack()
+
+#   start button
+start_button = tkinter.Button(text="Start")
+start_button.pack()
+
+#   checkmark label
+checkmark_label = tkinter.Label(text=CHECKMARK, bg=YELLOW, fg=GREEN)
+checkmark_label.pack()
+
+#   start button
+reset_button = tkinter.Button(text="Reset")
+reset_button.pack()
 
 window.mainloop()
