@@ -15,9 +15,29 @@ SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 MILLISECONDS = 1
 reps = 0
+timer = None
 
 
 # ---------------------------- TIMER RESET ------------------------------- #
+def reset_timer():
+    global reps
+
+    if timer is not None:
+        window.after_cancel(timer)
+
+    canvas.itemconfig(
+        timer_text,      # select canvas element to modify
+        text="00:00"     # set property of element
+    )
+
+    title_label.config(
+        text="Timer",
+        fg=GREEN,
+    )
+
+    checkmark_label.config(text="")
+
+    reps = 0
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start_timer():
@@ -41,6 +61,7 @@ def start_timer():
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
+    global timer
     count_mins = math.floor(count / 60)
     count_seconds = count % 60
     count_text = f"{count_mins:02d}:{count_seconds:02d}"
@@ -52,7 +73,7 @@ def count_down(count):
     """if count <= 0 the function does not get registerd"""
     if count > 0:
         # register callback function to execute AFTER 1000 ms
-        window.after(
+        timer = window.after(
             MILLISECONDS,           # ms to wait for
             count_down,     # callback function (this function)
             count - 1,       # callback function parameter
@@ -124,6 +145,7 @@ canvas.grid(row=1, column=1)
 #   start button
 start_button = tkinter.Button(
     text="Start",           # button text
+    highlightthickness=0,
     command=start_timer     # function to execute
 )
 # start_button.pack()
@@ -144,7 +166,10 @@ checkmark_label = tkinter.Label(
 checkmark_label.grid(row=3, column=1)
 
 #   start button
-reset_button = tkinter.Button(text="Reset")
+reset_button = tkinter.Button(
+    text="Reset",
+    highlightthickness=0,
+    command=reset_timer)
 # reset_button.pack()
 reset_button.grid(row=2, column=2)
 
