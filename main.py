@@ -16,20 +16,24 @@ LONG_BREAK_MIN = 20
 # ---------------------------- TIMER RESET ------------------------------- #
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
+def start_timer():
+    count_down(5)
 
-# ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
+
+# ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
     # change pomodoro timer text
     canvas.itemconfig(
-        timer_text,     # select canvas element to modify
-        text=count      # set property of element
+        timer_text,  # select canvas element to modify
+        text=count  # set property of element
     )
+    """if count <= 0 the function does not get registerd"""
     if count > 0:
         # register callback function to execute AFTER 1000 ms
         window.after(
-            1000,           # ms to wait for
-            count_down,     # callback function (this function)
-            count - 1       # callback function parameter
+            1000,  # ms to wait for
+            count_down,  # callback function (this function)
+            count - 1  # callback function parameter
         )
 
 
@@ -86,10 +90,12 @@ timer_text = canvas.create_text(
 )
 # canvas.pack()
 canvas.grid(row=1, column=1)
-count_down(5)
 
 #   start button
-start_button = tkinter.Button(text="Start")
+start_button = tkinter.Button(
+    text="Start",           # button text
+    command=start_timer     # function to execute
+)
 # start_button.pack()
 start_button.grid(row=2, column=0)
 
