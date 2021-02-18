@@ -38,7 +38,8 @@ timer_label = tkinter.Label(
         "bold"
     )
 )
-timer_label.pack()
+# timer_label.pack()
+timer_label.grid(row=0, column=1)
 
 #   create image
 photo = tkinter.PhotoImage(file="tomato.png")
@@ -68,11 +69,13 @@ canvas.create_text(
             "bold"      # font weight
     )
 )
-canvas.pack()
+# canvas.pack()
+canvas.grid(row=1, column=1)
 
 #   start button
 start_button = tkinter.Button(text="Start")
-start_button.pack()
+# start_button.pack()
+start_button.grid(row=2, column=0)
 
 #   checkmark label
 checkmark_label = tkinter.Label(
@@ -85,10 +88,12 @@ checkmark_label = tkinter.Label(
         "bold"
     )
 )
-checkmark_label.pack()
+# checkmark_label.pack()
+checkmark_label.grid(row=3, column=1)
 
 #   start button
 reset_button = tkinter.Button(text="Reset")
-reset_button.pack()
+# reset_button.pack()
+reset_button.grid(row=2, column=2)
 
 window.mainloop()
